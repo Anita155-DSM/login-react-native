@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 14,
     fontSize: 16,
-    fontFamily: Fonts.default.sans,
+    fontFamily: Fonts.sans,
   },
   error: {
     color: '#d12f2f',

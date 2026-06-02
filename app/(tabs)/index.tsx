@@ -1,77 +1,58 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
 
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#d9e7f1', dark: '#1c2831' }}
       headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
+        <View style={styles.banner}>
+          <Image
+            source={require('@/assets/images/kingdom.jpg')}
+            style={styles.kingdomImage}
+            contentFit="cover"
+          />
+          <View style={styles.bannerOverlay} />
+        </View>
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
+        <ThemedText type="title">Cronicas de Kingdom</ThemedText>
+        <ThemedText style={styles.emoji}>⚔️</ThemedText>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
 
+      <ThemedText style={styles.intro}>
+        Tras iniciar sesion, este es tu punto de partida para seguir la historia de Qin y el sueno de Shin.
+      </ThemedText>
+
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">El Estado de Qin 🦅</ThemedText>
         <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
+          Gobernado por el joven rey <ThemedText type="defaultSemiBold">Ei Sei</ThemedText>, su objetivo
+          es lograr lo imposible: la unificacion total de China. Su fuerza militar esta
+          respaldada por los legendarios Seis Grandes Generales y unidades independientes como la{' '}
+          <ThemedText type="defaultSemiBold">Unidad Hi Shin</ThemedText>.
         </ThemedText>
       </ThemedView>
+
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
+        <ThemedText type="subtitle">Los Estados Combatientes ⚔️</ThemedText>
         <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
+          Qin no esta solo. Para unificar China, debera derrotar a las otras seis superpotencias:
+          Zhao (liderado por el genio Riboku), Chu (el estado mas grande), Wei, Han, Yan y Qi.
+          Cada batalla definira el destino del continente.
+        </ThemedText>
+      </ThemedView>
+
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">El Camino del Gran General 🐎</ThemedText>
+        <ThemedText>
+          Aqui seguiras los pasos de Shin, un huerfano de guerra que comienza como soldado raso
+          y lucha en las batallas mas sangrientas para cumplir su promesa: convertirse en el
+          Gran General bajo los Cielos mas fuerte de la historia.
         </ThemedText>
       </ThemedView>
     </ParallaxScrollView>
@@ -84,15 +65,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 8,
   },
-  stepContainer: {
-    gap: 8,
+  emoji: {
+    lineHeight: 34,
+  },
+  intro: {
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  stepContainer: {
+    gap: 8,
+    marginBottom: 10,
+    borderRadius: 14,
+    padding: 14,
+    backgroundColor: 'rgba(127, 127, 127, 0.08)',
+  },
+  banner: {
+    flex: 1,
+    overflow: 'hidden',
+  },
+  kingdomImage: {
+    width: '100%',
+    height: '100%',
+  },
+  bannerOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(12, 18, 24, 0.25)',
   },
 });
